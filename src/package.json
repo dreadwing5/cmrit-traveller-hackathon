@@ -1,0 +1,22 @@
+{
+  "name": "main",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js -e ejs,js --ignore 'public/'",
+    "seeddb": "node db/seedDB.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "connect-livereload": "^0.6.1",
+    "livereload": "^0.9.3",
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "mysql2": "^2.3.3"
+  }
+}
