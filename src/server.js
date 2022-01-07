@@ -8,6 +8,10 @@ const publicDirectory = path.join(__dirname, "public");
 const session = require("express-session");
 const passport = require("passport");
 require("./configs/passport")(passport);
+const http = require("http");
+const socketio = require("socket.io");
+const server = http.createServer(app);
+const io = socketio(server);
 // Setting public directory
 
 app.use(express.static(publicDirectory));
@@ -52,7 +56,37 @@ app.use("/", require("./routes/index"));
 app.use("/", require("./routes/user"));
 app.use("/", require("./routes/vehicle"));
 
+const onlineClients = new Set();
+const users = [];
+
+// Join user to chat
+function userJoin(id) {
+  const user = { id };
+  users.push(user);
+  console.log("user added");
+  return user;
+}
+
+function onNewWebsocketConnection(socket) {
+  console.info(`Socket ${socket.id} has connected.`);
+  const user = userJoin(socket.id);
+  socket.join("123456");
+  onlineClients.add(socket.id);
+
+  socket.on("disconnect", () => {
+    onlineClients.delete(socket.id);
+    console.info(`Socket ${socket.id} has disconnected.`);
+  });
+
+  socket.on("message", (msg) => {
+    console.info(`Socket ${socket.id} has sent a message.`, msg);
+    io.to("123456").emit("myMessage", msg);
+  });
+}
+
+io.on("connection", onNewWebsocketConnection);
+
 // Server Running at port 4000
-app.listen("8000", () => {
+server.listen("8000", () => {
   console.log("Server Started ... http://localhost:8000");
 });

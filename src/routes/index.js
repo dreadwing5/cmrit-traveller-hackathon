@@ -14,4 +14,8 @@ router.get("/dashboard", (req, res) => {
   res.render("owner-dashboard");
 });
 
+router.get("/commuter", (req, res) => {
+  res.render("commuter-dashboard");
+});
+
 module.exports = router;
