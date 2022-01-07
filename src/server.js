@@ -4,8 +4,9 @@ const app = express();
 const path = require("path");
 const livereload = require("livereload");
 const connectLiveReload = require("connect-livereload");
-
 const publicDirectory = path.join(__dirname, "public");
+
+const axios = require("axios");
 
 // Setting public directory
 
@@ -33,12 +34,9 @@ app.set("view engine", "ejs");
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
-
 // Routes
-// app.use("/", require("./routes/index"));
+app.use("/", require("./routes/index"));
+// app.use("/user", require("./routes/user"));
 
 // Server Running at port 4000
 app.listen("8000", () => {
