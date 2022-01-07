@@ -1,1 +1,7 @@
 exports.CREATE_VEHICLE_OWNERS_TABLE = `CREATE TABLE IF NOT EXISTS vehicle_owners(mailid varchar(255) NOT NULL PRIMARY KEY, name varchar(255), password varchar(255), role int NOT NULL, phoneNumber varchar(255))`;
+exports.CREATE_COMMUTER_TABLE = `CREATE TABLE IF NOT EXISTS commuter(mailid varchar(255) NOT NULL PRIMARY KEY, phoneNumber varchar(255), password varchar(255), role int NOT NULL, name varchar(255))`;
+// role 0: vehicle_owners
+// role 1: commuter
+exports.CREATE_RIDE_DETAIL_TABLE = `CREATE TABLE IF NOT EXISTS ride_detail(commuterid int NOT NULL PRIMARY KEY, ownerid int, vehicleid int, status varchar(255), feedback varchar(255), startDest varchar(255), endDest varchar(255), paymentID int)`;
+exports.CREATE_PAYMENT_TABLE = `CREATE TABLE IF NOT EXISTS payment(paymentID int NOT NULL PRIMARY KEY, mode varchar(255), amount varchar(255), paymentDate date)`;
+exports.CREATE_VEHICLE_TABLE = `CREATE TABLE IF NOT EXISTS vehicle(plateNumber varchar(255) NOT NULL PRIMARY KEY, mailid varchar(255), images varchar(255), capacity int, cost float, createdat date, time timestamp, vechicleType varchar(255), brand varchar(255), name varchar(255), location varchar(255), FOREIGN KEY(mailid) references vehicle_owners(mailid))`;

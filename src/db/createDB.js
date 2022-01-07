@@ -4,6 +4,8 @@ const util = require("util");
 const CONNECTION_CONFIG = {
   host: "localhost",
   user: "root",
+  // have to remove this password
+  // password: "pratik79",
   password: "",
 };
 

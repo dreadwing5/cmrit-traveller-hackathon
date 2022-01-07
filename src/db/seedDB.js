@@ -1,7 +1,7 @@
 const mysql = require("mysql2");
 const util = require("util");
 
-const { CREATE_VEHICLE_OWNERS_TABLE } = require("../db/dbTable");
+const { CREATE_VEHICLE_OWNERS_TABLE, CREATE_COMMUTER_TABLE,CREATE_RIDE_DETAIL_TABLE,CREATE_PAYMENT_TABLE,CREATE_VEHICLE_TABLE } = require("../db/dbTable");
 
 const { CONNECTION_CONFIG } = require("../db/config.js");
 
@@ -24,6 +24,10 @@ const seedDatabase = async () => {
 const createTable = async function (execQuery) {
   try {
     await execQuery(CREATE_VEHICLE_OWNERS_TABLE);
+    await execQuery(CREATE_COMMUTER_TABLE);
+    await execQuery(CREATE_RIDE_DETAIL_TABLE);
+    await execQuery(CREATE_PAYMENT_TABLE);
+    await execQuery(CREATE_VEHICLE_TABLE);
   } catch (err) {
     throw err;
   }
