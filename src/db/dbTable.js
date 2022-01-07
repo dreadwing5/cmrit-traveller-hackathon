@@ -1,0 +1,1 @@
+exports.CREATE_VEHICLE_OWNERS_TABLE = `CREATE TABLE IF NOT EXISTS vehicle_owners(mailid varchar(255) NOT NULL PRIMARY KEY, name varchar(255), password varchar(255), role int NOT NULL, phoneNumber varchar(255))`;

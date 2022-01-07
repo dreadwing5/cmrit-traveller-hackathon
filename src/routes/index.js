@@ -9,6 +9,10 @@ router.get("/", (req, res) => {
   });
 });
 
+router.get("/register", (req, res) => {
+  res.render("sign-up");
+});
+
 // this route connect to the flask server
 router.get("/get-data", async (req, res) => {
   const response = await axios.get("http://127.0.0.1:5000/flask");
