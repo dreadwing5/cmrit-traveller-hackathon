@@ -6,8 +6,13 @@
   <link rel="stylesheet" href="/css/style.css">
   <!-- Boxicons CDN Link -->
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+    integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js
+
+"></script>
 <title>CMRIT TRAVELLER</title>
 
 <body>
@@ -101,7 +106,7 @@
           <div class="recent-sales box">
 
             <h2>VEHICLE</h2>
-            <form class="form-inline" action="/action_page.php">
+            <form class="form-inline" id="myForm">
 
               <div class="form-group">
                 <label for="plateNo">PlateNumber:</label>
@@ -133,7 +138,8 @@
               </div><br>
               <div class="form-group">
                 <label for="loaction">Location:</label>
-                <input type="Location" class="form-control" id="location" placeholder="Enter location" name="location">
+                <input type="Location" class="form-control location-marker" id="location" placeholder="Enter location"
+                  name="location">
               </div><br>
               <div> <label>Select Image File:</label>
                 <input type="file" name="image">
@@ -258,6 +264,33 @@
       } else
         sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
     }
+  </script>
+
+  <script>
+    const form = document.getElementById('myForm');
+
+
+    const submitForm = async () => {
+
+      try {
+        const formData = Object.fromEntries(new FormData(form).entries());
+        axios.post('http://localhost:8000/vehicle', formData);
+        alert('Form Submitted');
+      } catch (error) {
+        alert('An error occurred!')
+      }
+
+    }
+    form.addEventListener('submit', submitForm);
+
+    const locationMarker = document.querySelector('.location-marker');
+
+    locationMarker.addEventListener('click', () => {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const p = position.coords;
+        locationMarker.value = `${p.latitude},${p.longitude}`;
+      })
+    })
   </script>
 
 </body>

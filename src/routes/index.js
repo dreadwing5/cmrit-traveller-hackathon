@@ -11,7 +11,6 @@ router.get("/sign-up", (req, res) => {
 });
 
 router.get("/dashboard", (req, res) => {
-  console.log(req.session.user);
   res.render("owner-dashboard");
 });
 

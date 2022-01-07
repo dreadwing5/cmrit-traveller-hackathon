@@ -50,6 +50,7 @@ app.use(express.json());
 // Routes
 app.use("/", require("./routes/index"));
 app.use("/", require("./routes/user"));
+app.use("/", require("./routes/vehicle"));
 
 // Server Running at port 4000
 app.listen("8000", () => {
