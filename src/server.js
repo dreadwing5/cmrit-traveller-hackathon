@@ -5,7 +5,9 @@ const path = require("path");
 const livereload = require("livereload");
 const connectLiveReload = require("connect-livereload");
 const publicDirectory = path.join(__dirname, "public");
-
+const session = require("express-session");
+const passport = require("passport");
+require("./configs/passport")(passport);
 // Setting public directory
 
 app.use(express.static(publicDirectory));
@@ -30,11 +32,24 @@ app.use("/scripts", express.static(__dirname + "/dist"));
 // Set ejs template
 app.set("view engine", "ejs");
 
+//Express Session
+app.use(
+  session({
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.json());
 
 // Routes
 app.use("/", require("./routes/index"));
-// app.use("/user", require("./routes/user"));
+app.use("/", require("./routes/user"));
 
 // Server Running at port 4000
 app.listen("8000", () => {

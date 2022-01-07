@@ -18,43 +18,38 @@ module.exports = (passport) => {
             message: "All fields are required",
           });
         }
-
-        connection.query(
-          "SELECT * FROM faculty WHERE mailid= ?",
-          [mailid],
-          function (err, rows) {
-            if (!rows.length) {
-              return done(null, false, {
-                message: "That email is not registered",
-              });
-            }
-
-            let dbPassword = rows[0].password;
-
-            if (!(dbPassword === password)) {
-              return done(null, false, {
-                message: "Password incorrect",
-              });
-            }
-
-            return done(null, rows[0]);
+        const value = `"${mailid}"`;
+        const sql = `SELECT * FROM vehicle_owners WHERE mailid=${value}`;
+        connection.query(sql, (err, rows) => {
+          if (!rows.length) {
+            return done(null, false, {
+              message: "That email is not registered",
+            });
           }
-        );
+
+          let dbPassword = rows[0].password;
+
+          if (!(dbPassword === password)) {
+            return done(null, false, {
+              message: "Password incorrect",
+            });
+          }
+
+          return done(null, rows[0]);
+        });
       }
     )
   );
 
   passport.serializeUser((user, done) => {
-    done(null, user.mailId);
+    done(null, user.mailid);
   });
 
   passport.deserializeUser(function (mailid, done) {
-    connection.query(
-      "SELECT * FROM faculty WHERE mailid= ?",
-      [mailid],
-      function (err, rows) {
-        done(err, rows[0]);
-      }
-    );
+    const value = `"${mailid}"`;
+    const sql = `SELECT * FROM vehicle_owners WHERE mailid=${value}`;
+    connection.query(sql, (err, rows) => {
+      done(err, rows[0]);
+    });
   });
 };

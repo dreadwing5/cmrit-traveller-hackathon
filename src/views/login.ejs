@@ -100,18 +100,12 @@
             e.preventDefault();
             const formData = Object.fromEntries(new FormData(form).entries());
             console.log(formData);
-            axios.post('/login', formData)
-                .then(function (response) {
-                    console.log(response);
-                    if (response.data.success) {
-                        window.location.href = '/';
-                    } else {
-                        alert(response.data.message);
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+            axios.post('/login', formData).then((res) => {
+                window.location.href = '/dashboard';
+            }).catch((err) => {
+                alert('Invalid Credentials');
+
+            })
         });
     </script>
 </body>

@@ -10,4 +10,9 @@ router.get("/sign-up", (req, res) => {
   res.render("sign-up");
 });
 
+router.get("/dashboard", (req, res) => {
+  console.log(req.session.user);
+  res.render("owner-dashboard");
+});
+
 module.exports = router;

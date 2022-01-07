@@ -1,5 +1,5 @@
 const express = require("express");
-const connection = require("../db/DBConnection");
+const connection = require("../configs/DBConnection");
 const router = express.Router();
 const passport = require("passport");
 
@@ -86,20 +86,41 @@ router.post("/register", (req, res) => {
 });
 
 //Login Handle
-router.post("/login", (req, res, next) => {
+router.post("/login", (req, res) => {
   console.log(req.body);
-  // passport.authenticate("local", {
-  //   successRedirect: "/",
-  //   failureRedirect: "/login",
-  //   failureFlash: true,
-  // })(req, res, next);
+
+  const { mailid, password } = req.body;
+
+  const value = `"${mailid}"`;
+  const sql = `SELECT * FROM vehicle_owners WHERE mailid=${value}`;
+  connection.query(sql, (err, rows) => {
+    if (!rows.length) {
+      return res.status(400).json({
+        message: "That email is not registered",
+      });
+    }
+
+    let dbPassword = rows[0].password;
+
+    if (!(dbPassword === password)) {
+      return res.status(400).json({
+        message: "Password incorrect",
+      });
+    }
+
+    req.session.user = mailid;
+
+    res.status(200).json({
+      message: "Login Successful",
+    });
+  });
 });
 
 //Logout Handle
 router.get("/logout", (req, res) => {
   req.logOut();
-  req.flash("success_msg", "You are logged out");
-  res.redirect("/login");
+  // req.flash("success_msg", "You are logged out");
+  res.redirect("/");
 });
 
 module.exports = router;
