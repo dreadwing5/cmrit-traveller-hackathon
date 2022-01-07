@@ -11,7 +11,11 @@ router.get("/sign-up", (req, res) => {
 });
 
 router.get("/dashboard", (req, res) => {
-  res.render("owner-dashboard");
+  if (req.session.role === 0) {
+    res.render("owner-dashboard");
+  } else {
+    res.render("commuter-dashboard");
+  }
 });
 
 router.get("/commuter", (req, res) => {

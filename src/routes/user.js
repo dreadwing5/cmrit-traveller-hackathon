@@ -1,105 +1,51 @@
 const express = require("express");
 const connection = require("../configs/DBConnection");
 const router = express.Router();
-const passport = require("passport");
+const util = require("util");
 
-router.post("/register", (req, res) => {
-  console.log(req.body);
+const execQuery = util.promisify(connection.query.bind(connection));
 
-  // let {
-  //   id,
-  //   name,
-  //   mailid,
-  //   password,
-  //   password2,
-  //   joiningDate,
-  //   department,
-  //   phoneNumber,
-  // } = req.body;
+router.post("/register", async (req, res) => {
+  try {
+    const { mailid, password, name, role, phoneNumber, password2 } = req.body;
 
-  // if (!joiningDate) {
-  //   joiningDate = null;
-  // }
-  // if (!department) {
-  //   department = null;
-  // }
-  // if (!phoneNumber) {
-  //   phoneNumber = null;
-  // }
-  // // validate required fields
-  // let errors = [];
-  // //validating email id
-  // //Check Required Fields
-  // if (!name || !mailid || !password || !password2 || !id) {
-  //   errors.push({
-  //     msg: "Please fill in all fields",
-  //   });
-  // }
-  // //Check Passwords match
-  // if (password !== password2) {
-  //   errors.push({
-  //     msg: "Passwords do not match",
-  //   });
-  // }
-  // connection.query(
-  //   "SELECT mailid FROM faculty WHERE mailid = ?",
-  //   [mailid],
-  //   (error, data) => {
-  //     if (error) {
-  //       console.log("Email id coud not be found");
-  //     }
-  //     if (data.length > 0) {
-  //       errors.push({
-  //         msg: "Email already exist",
-  //       });
-  //     }
-  //     if (errors.length > 0) {
-  //       res.render("admin/admin_addUser", {
-  //         errors: errors,
-  //         title: "Add User",
-  //       });
-  //     } else {
-  //       connection.query(
-  //         "INSERT INTO faculty SET ? ",
-  //         {
-  //           name: name,
-  //           mailid: mailid,
-  //           password: password,
-  //           id: id,
-  //           role: "user",
-  //           joiningDate: joiningDate,
-  //           phoneNumber: phoneNumber,
-  //           department: department,
-  //         },
-  //         (data) => {
-  //           {
-  //             res.render("admin/admin_addUser", {
-  //               success_msg: "User registered successfully",
-  //               title: "Add User",
-  //             });
-  //           }
-  //         }
-  //       );
-  //     }
-  //   }
-  // );
+    const data = {
+      mailid,
+      password,
+      name,
+      role,
+      phoneNumber,
+    };
+
+    if (password != password2) {
+      res.status(400).send("Passwords do not match");
+    }
+    const sql = `INSERT INTO vehicle_owners SET ? `;
+    const response = await execQuery(sql, data);
+    req.session.user = mailid;
+    req.session.role = role;
+    res.status(200).send("Successfully registered");
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 //Login Handle
-router.post("/login", (req, res) => {
+router.post("/login", async (req, res) => {
   console.log(req.body);
 
-  const { mailid, password } = req.body;
+  try {
+    const { mailid, password } = req.body;
 
-  const value = `"${mailid}"`;
-  const sql = `SELECT * FROM vehicle_owners WHERE mailid=${value}`;
-  connection.query(sql, (err, rows) => {
+    const value = `"${mailid}"`;
+    const sql = `SELECT * FROM vehicle_owners WHERE mailid=${value}`;
+
+    const rows = await execQuery(sql);
     if (!rows.length) {
       return res.status(400).json({
         message: "That email is not registered",
       });
     }
-
     let dbPassword = rows[0].password;
 
     if (!(dbPassword === password)) {
@@ -108,12 +54,14 @@ router.post("/login", (req, res) => {
       });
     }
 
-    req.session.user = mailid;
-
+    req.session.user = rows[0].mailid;
+    req.session.role = rows[0].role;
     res.status(200).json({
       message: "Login Successful",
     });
-  });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 //Logout Handle

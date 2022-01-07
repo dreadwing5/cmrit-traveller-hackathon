@@ -74,7 +74,7 @@
                     <div class="fv-row mb-7">
                         <label class="form-label fw-bolder text-dark fs-6">Email</label>
                         <input class="form-control form-control-lg form-control-solid" type="mailid" placeholder=""
-                            name="email" autocomplete="off" />
+                            name="mailid" autocomplete="off" />
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
@@ -146,18 +146,12 @@
             e.preventDefault();
             const formData = Object.fromEntries(new FormData(form).entries());
             console.log(formData);
-            axios.post('/register', formData)
-                .then(function (response) {
-                    console.log(response);
-                    if (response.data.success) {
-                        window.location.href = '/';
-                    } else {
-                        alert(response.data.message);
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+            axios.post('/register', formData).then((res) => {
+                window.location.href = '/dashboard';
+            }).catch((err) => {
+                alert('Invalid Credentials');
+
+            })
         });
     </script>
 

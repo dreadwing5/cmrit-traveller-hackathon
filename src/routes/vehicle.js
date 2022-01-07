@@ -15,14 +15,14 @@ router.post("/vehicle", async (req, res) => {
 
   const sql = `SELECT * FROM vehicle_owners`;
   const data = await execQuery(sql);
-  console.log(data);
+  console.log(data); //TODO Pratik -- Add vehicle details to the database
 });
 
 // Route for getting  vehicle data
 
 router.get("/vehicle", async (req, res) => {
   const sql = `SELECT from vehicle where vehicle_id=${req.session.user}`;
-  const result = await execQuery(sql);
+  const result = await execQuery(sql); //TODO  --Display frontend
   console.log(data);
 });
 
