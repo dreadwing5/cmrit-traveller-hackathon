@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js -e ejs,js --ignore 'public/'",
-    "seeddb": "node db/seedDB.js"
+    "createdb": "node db/createDB.js"
   },
   "author": "",
   "license": "ISC",

@@ -1,5 +1,5 @@
 const express = require("express");
-const connection = require("../configs/DBConnection");
+const connection = require("../db/DBConnection");
 const router = express.Router();
 const passport = require("passport");
 

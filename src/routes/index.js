@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const axios = require("axios");
 
 router.get("/", (req, res) => {
   res.render("index", {
@@ -9,7 +10,7 @@ router.get("/", (req, res) => {
 });
 
 // this route connect to the flask server
-router.get("/get-data", (req, res) => {
+router.get("/get-data", async (req, res) => {
   const response = await axios.get("http://127.0.0.1:5000/flask");
   const data = response.data;
   console.log(data);

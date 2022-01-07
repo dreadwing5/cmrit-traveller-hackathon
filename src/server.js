@@ -6,8 +6,6 @@ const livereload = require("livereload");
 const connectLiveReload = require("connect-livereload");
 const publicDirectory = path.join(__dirname, "public");
 
-const axios = require("axios");
-
 // Setting public directory
 
 app.use(express.static(publicDirectory));
