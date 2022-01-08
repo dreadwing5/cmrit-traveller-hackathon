@@ -47,4 +47,5 @@ router.get("/mybooking", (req, res) => {
     data,
   });
 });
+
 module.exports = router;
