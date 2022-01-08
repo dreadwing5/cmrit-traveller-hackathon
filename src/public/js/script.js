@@ -1,66 +1,5 @@
 "use strict";
 
-// prettier-ignore
-
-class Workout {
-  date = new Date();
-  id = this.date.getTime() + '';
-  clicks =0;
-
-  constructor(coords, distance, duration) {
-    this.coords = coords; //[lat,lang]
-    this.distance = distance; //in km
-    this.duration = duration; //in min
-  }
-
-  _setDescription() {
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-    this.description = `${this.type[0].toUpperCase()}${this.type.slice(1)} on ${months[this.date.getMonth()]} ${this.date.getDate()}`
-  }
-
-  click(){
-    this.clicks++;
-  }
-}
-
-class Running extends Workout {
-  type = "running";
-  constructor(coords, distance, duration, cadence) {
-    super(coords, distance, duration);
-    this.cadence = cadence;
-    this.pace = this.calcPace();
-    this._setDescription();
-  }
-
-  calcPace() {
-    //min/km
-    return this.duration / this.distance;
-  }
-}
-
-class Cycling extends Workout {
-  type = "cycling";
-  constructor(coords, distance, duration, elevationGain) {
-    super(coords, distance, duration);
-    this.elevationGain = elevationGain;
-    this.speed = this.calcSpeed();
-    this._setDescription();
-  }
-
-  calcSpeed() {
-    //km/h
-    return this.distance / (this.duration / 60);
-  }
-}
-
-// const run1 = new Running([39, -12], 5.2, 25, 178);
-// const cycling1 = new Cycling([39, -12], 27, 95, 523);
-
-// console.log(run1, cycling1);
-
-//Application Architecture;
-
 const form = document.querySelector(".form");
 const containerWorkouts = document.querySelector(".workouts");
 const inputSource = document.querySelector(".form__input--source");
@@ -174,46 +113,6 @@ class App {
     const duration = inputDestination.value;
     const { lat, lng } = this.#mapEvent.latlng;
     console.log(lat, lng);
-
-    // location  = [lat, lng],;
-    // if (type === "running") {
-    //   //Check if data is valid
-    //   const cadence = +inputCadence.value;
-
-    //   if (
-    //     !validInputs(distance, duration, cadence) ||
-    //     !allPositive(distance, duration, cadence)
-    //   ) {
-    //     return alert("Inputs have to be positive number!");
-    //   }
-    //   workout = new Running([lat, lng], distance, duration, cadence);
-    // }
-
-    // if (type === "cycling") {
-    //   const elevationGain = +inputElevation.value;
-    //   if (
-    //     !validInputs(distance, duration, elevationGain) ||
-    //     !allPositive(distance, duration)
-    //   ) {
-    //     return alert("Inputs have to be positive number!");
-    //   }
-    //   workout = new Cycling([lat, lng], distance, duration, elevationGain);
-    // }
-
-    // this.#workouts.push(workout);
-
-    // //   Display Marker
-    // this._renderWorkoutMarker(workout);
-
-    // //Render workout list
-    // this._renderWorkout(workout);
-
-    // //Hide form + clear input fields
-
-    // this._hideForm();
-
-    // //Set local storage tp all workouts
-    // this._setLocalStorage();
   }
 
   _renderWorkoutMarker(coords) {
@@ -254,38 +153,13 @@ class App {
       <button class="book-now btn btn-primary">Book</button>
     </div>
   </div>`;
-
-    // let html = `<li class="workout workout--${workout.type}" data-id="${
-    //   workout.id
-    // }">
-    //   <h2 class="workout__title">${workout.description}</h2>
-    //   <div class="workout__details">
-    //     <span class="workout__icon">${
-    //       workout.type === "running" ? "🏃‍♂️" : "🚴‍♀️"
-    //     } </span>
-    //     <span class="workout__value">${workout.distance}</span>
-    //     <span class="workout__unit">km</span>
-    //   </div>
-    //   <div class="workout__details">
-    //     <span class="workout__icon">⏱</span>
-    //     <span class="workout__value">${workout.duration}</span>
-    //     <span class="workout__unit">min</span>
-    //   </div>`;
-    // if (workout.type === "cycling") {
-    //   html += `
-    //   <div class="workout__details">
-    //         <span class="workout__icon">⚡️</span>
-    //         <span class="workout__value">${workout.speed.toFixed(1)}</span>
-    //         <span class="workout__unit">km/h</span>
-    //       </div>
-    //       <div class="workout__details">
-    //         <span class="workout__icon">⛰</span>
-    //         <span class="workout__value">${workout.elevationGain}</span>
-    //         <span class="workout__unit">m</span>
-    //       </div> </li>`;
-    // }
-
     form.insertAdjacentHTML("afterend", html);
+    document.querySelector(".book-now").addEventListener("click", function () {
+      socket.emit("message", {
+        message: "Book Now",
+        vehicle_id: "1",
+      });
+    });
   }
   _moveToPopup(e) {
     const workoutEl = e.target.closest(".workout");
@@ -300,31 +174,15 @@ class App {
         duration: 1,
       },
     });
-    //using the public interface
-    // workout.click();
   }
-
-  //   _setLocalStorage() {
-  //     localStorage.setItem("workouts", JSON.stringify(this.#workouts));
-  //   }
-
-  //   _getLocalStorage() {
-  //     const data = JSON.parse(localStorage.getItem("workouts"));
-  //     // console.log(data);
-
-  //     if (!data) return;
-
-  //     this.#workouts = data;
-
-  //     this.#workouts.forEach((workout) => {
-  //       this._renderWorkout(workout);
-  //     });
-  //   }
-
-  //   reset() {
-  //     localStorage.removeItem("workouts");
-  //     location.reload();
-  //   }
 }
 
 const app = new App();
+
+const socket = io.connect("http://localhost:8000");
+socket.on("connect", function () {
+  console.log("connected");
+});
+socket.on("disconnect", function () {
+  console.log("disconnected");
+});
