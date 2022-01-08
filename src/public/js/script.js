@@ -1,5 +1,7 @@
 "use strict";
 
+const socket = io.connect("http://localhost:8000");
+
 const form = document.querySelector(".form");
 const containerWorkouts = document.querySelector(".workouts");
 const inputSource = document.querySelector(".form__input--source");
@@ -177,12 +179,11 @@ class App {
   }
 }
 
-const app = new App();
-
-const socket = io.connect("http://localhost:8000");
 socket.on("connect", function () {
   console.log("connected");
 });
 socket.on("disconnect", function () {
   console.log("disconnected");
 });
+
+const app = new App();

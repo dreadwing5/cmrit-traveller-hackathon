@@ -1,354 +1,376 @@
 <html lang="en" dir="ltr">
 
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-  <link rel="stylesheet" href="/css/style.css">
-  <!-- Boxicons CDN Link -->
-  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <title>CMRIT TRAVELLER</title>
 
 <body>
-  <div class="sidebar">
-    <div class="logo-details">
-      <i class='bx bxl-c-plus-plus'></i>
-      <span class="logo_name">CMRIT TRAVELLER</span>
+    <div class="sidebar">
+        <div class="logo-details">
+            <i class='bx bxl-c-plus-plus'></i>
+            <span class="logo_name">CMRIT TRAVELLER</span>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="#" class="active">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Commuter Profile</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-box'></i>
+                    <span class="links_name" type="button"
+                        onclick="document.getElementById('id03').style.display='block'">Recent Rides</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class='bx bx-list-ul'></i>
+                    <span class="links_name" type="button"
+                        onclick="document.getElementById('id05').style.display='block'">MY Booking</span>
+                </a>
+            </li>
+
+
+            <li class="log_out">
+                <a href="Login.jsp">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+            </li>
+        </ul>
     </div>
-    <ul class="nav-links">
-      <li>
-        <a href="#" class="active">
-          <i class='bx bx-grid-alt'></i>
-          <span class="links_name">Commuter Profile</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-box'></i>
-          <span class="links_name" type="button" onclick="document.getElementById('id03').style.display='block'">Recent Rides</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="#">
-          <i class='bx bx-list-ul'></i>
-          <span class ="links_name" type="button" onclick="document.getElementById('id05').style.display='block'">MY Booking</span>
-        </a>
-      </li>
-      
-
-      <li class="log_out">
-        <a href="Login.jsp">
-          <i class='bx bx-log-out'></i>
-          <span class="links_name">Log out</span>
-        </a>
-      </li>
-    </ul>
-  </div>
-  <section class="home-section">
-    <nav>
-      <div class="sidebar-button">
-        <i class='bx bx-menu sidebarBtn'></i>
-        <span class="dashboard">Dashboard</span>
-      </div>
-
-    </nav>
-
-    <div class="home-content">
-      <div class="overview-boxes">
-        <div class="box">
-          <div class="right-side">
-            <pan type="button" onclick="document.getElementById('id01').style.display='block'">Start Journey</pan>
-
-
-          </div>
-          <!-- i class='bx bx-cart-alt cart'></i-->
-        </div>
-
-        <div class="box">
-          <div class="right-side">
-            <pan type="button" onclick="document.getElementById('id03').style.display='block'">Available Rides</pan>
-
-          </div>
-          <!-- i class='bx bxs-cart-add cart two' ></i-->
-        </div>
-        <div class="box">
-          <div class="right-side">
-            <pan type="button" onclick="document.getElementById('id04').style.display='block'">Pooling Status</pan>
-
-          </div>
-          <!-- i class='bx bx-cart cart three' ></i-->
-        </div>
-        <div class="box">
-          <div class="right-side">
-            <pan type="button" onclick="document.getElementById('id02').style.display='block'">FeedBack</pan>
-
-          </div>
-          <!-- i class='bx bxs-cart-download cart four' ></i-->
-        </div>
-        
-        
-      </div>
-    </div>
-
-
-    <div class="home-content">
-
-      <div id="id01" class="w3-panel w3-green w3-display" style="display:none">
-        <pan onclick="this.parentElement.style.display='none'" class="w3-button w3-red w3-display-topright">x</pan>
-
-        <div class="sales-boxes">
-          <div class="recent-sales box">
-
-            <h2>Start Journey</h2>
-            <form class="form-inline" action="/action_page.php">
-				 
-              <div class="form-group">
-                
-                <label for="currentlocation">Current Location:</label>
-                <input type="CurrentLocation" class="form-control" id="currentlocation"
-                  placeholder="Enter CurrentLocation" name="plateNo" align="center">
-                  <button class='bx bx-been-here'></button>
-              </div><br>
-              <div class="form-group">
-                <label for="destinationlocation">Destination Location:</label>
-                <input type="Destinationlocation" class="form-control" id="destinationlocation"
-                  placeholder="Enter Destination Location" name="destination location" align="left">
-              <button class='bx bx-been-here'></button>
-              </div><br>
-              <div class="form-group">
-                <label for="ownerid">Owner ID:</label>
-                <input type="Owner ID" class="form-control" id="ownerid" placeholder="Enter the owner id" name="ownerid"
-                  align="right">
-              </div><br>
-              <div class="form-group">
-                <label for="vehicletype">vehicle Type:</label>
-                <input type="Vehicle Type" class="form-control" id="vehicletype" placeholder="Enter vehicle type"
-                  name="vehicletype">
-              </div><br>
-
-              <button type="submit" class="btn btn-default">Submit</button>
-
-            </form>
-
-          </div>
-        </div>
-      </div>
-
-
-      <div id="id02" class="w3-panel w3-green w3-display" style="display:none">
-        <pan onclick="this.parentElement.style.display='none'" class="w3-button w3-red w3-display-topright">x</pan>
-
-        <div class="sales-boxes">
-          <div class="recent-sales box">
-            <h2>FeedBack</h2>
-            <form class="form-inline" action="/action_page.php">
-              <div class="form-group">
-                <label for="commutatorid">Commutator ID:</label>
-                <input type="CommutatorID" class="form-control" id="CommutatorID" placeholder="Enter Commutator ID"
-                  name="commutatorid">
-              </div><br>
-              <div class="form-group">
-                <label for="ownerid">Owner ID:</label>
-                <input type="Owner ID" class="form-control" id="ownerid" placeholder="Enter the owner ID" name="mode">
-              </div><br>
-              <div class="form-group">
-                <label for="ratings">Ratings:</label>
-                <input type="Ratings" class="form-control" id="ratings" placeholder="Enter the rating out of 10 "
-                  name="ratings">
-              </div><br>
-              <div class="form-group">
-                <label for="comment">Comment:</label>
-                <input type="Comment" class="form-control" id="comment" placeholder="Enter your valuable comments"
-                  name="comments">
-              </div><br>
-
-              <button type="submit" class="btn btn-default">Submit</button>
-
-
-            </form>
-
-          </div>
-        </div>
-      </div>
-
-      <div id="id04" class="w3-panel w3-green w3-display" style="display:none">
-        <pan onclick="this.parentElement.style.display='none'" class="w3-button w3-red w3-display-topright">x</pan>
-
-        <div class="sales-boxes">
-          <div class="recent-sales box">
-            <h2>Pooling</h2>
-            <form class="form-inline" action="/action_page.php">
-              <div class="form-group">
-                <label for="ownerid">Owner ID:</label>
-                <input type="OwnerID" class="form-control" id="OwnerID" placeholder="Transaction Number" name="ownerid">
-              </div><br>
-              <div class="form-group">
-                <label for="vehciletype">Vehcile Type:</label>
-                <input type="Vehcile Type" class="form-control" id="vehcile" placeholder="Enter the vehicle type"
-                  name="vehcile">
-              </div><br>
-              <div class="form-group">
-                <label for="commutatorcontact">Commutator Contact:</label>
-                <input type="Commutator Contact" class="form-control" id="commuataorcontact"
-                  placeholder="Enter the Commutator ID " name="commutatorid">
-              </div><br>
-              <div class="form-group">
-                <label for="pickuppoint">PickUp Point:</label>
-                <input type="PickUpPoint" class="form-control" id="pickuppoint" placeholder="Enter the pick up point"
-                  name="pickuppoint">
-                  <button class='bx bx-been-here'></button>
-              </div><br>
-              <div class="form-group">
-                <label for="destinationpoint">Destination Point:</label>
-                <input type="DestinationPoint" class="form-control" id="destinationpoint"
-                  placeholder="Enter the Destination Point" name="destinationpoint">
-              <button class='bx bx-been-here'></button>
-              </div><br>
-
-
-              <button type="submit" class="btn btn-default">Submit</button>
-
-
-            </form>
-
-          </div>
-        </div>
-      </div>
-
-      <div id="id05" class="w3-panel w3-green w3-display" style="display:none">
-        <pan onclick="this.parentElement.style.display='none'" class="w3-button w3-red w3-display-topright">x</pan>
-
-        <div class="sales-boxes">
-          <div class="recent-sales box">
-            <h2>Booking</h2>
-            <form class="form-inline" action="/action_page.php">
-              <div class="form-group">
-                <label for="bookingid">Booking ID:</label>
-                <input type="BookingID" class="form-control" id="BookingID" placeholder="Enter the Booking ID"
-                  name="bookingid">
-              </div><br>
-              <div class="form-group">
-                <label for="pickuptime">PickUp Time:</label>
-                <input type="PickUp Time" class="form-control" id="PickUp Time" placeholder="Enter the pick up time"
-                  name="pickuptime">
-              </div><br>
-              <div class="form-group">
-                <label for="returntime">Return Time:</label>
-                <input type="Return Time" class="form-control" id="returntime" placeholder="Enter the Return Time "
-                  name="returntime">
-              </div><br>
-              <div class="form-group">
-                <label for="vehicletype">vehicle Type:</label>
-                <input type="Vehicle Type" class="form-control" id="vehicletype" placeholder="Enter the vehicle type"
-                  name="vehcile">
-              </div><br>
-              <div class="form-group">
-                <label for="cost">Cost:</label>
-                <input type="Cost" class="form-control" id="cost" placeholder="Enter the fair" name="cost">
-              </div><br>
-              <div class="form-group">
-                <label for="currentlocation">Current Location:</label>
-                <input type="Current Location" class="form-control" id="currentlocation"
-                  placeholder="Enter the current location" name="currentlocation">
-             <button class='bx bx-been-here'></button>
-              </div><br>
-              <div class="form-group">
-                <label for="address">Destination:</label>
-                <input type="Address" class="form-control" id="Address" placeholder="Enter the destination Address"
-                  name="address">
-              <button class='bx bx-been-here'></button>
-              </div><br>
-              <div class="form-group">
-                <label for="status">Status:</label>
-                <input type="Status" class="form-control" id="Status" placeholder="Enter the Status of Ride"
-                  name="status">
-              </div><br>
-
-              <button type="submit" class="btn btn-default">Submit</button>
-
-
-            </form>
-
-          </div>
-        </div>
-      </div>
-      <div id="id03" class="w3-panel w3-green w3-display" style="display:none">
-        <pan onclick="this.parentElement.style.display='none'" class="w3-button w3-red w3-display-topright">x</pan>
-
-        <div class="sales-boxes">
-          <div class="recent-sales box">
-            <div class="sales-boxes">
-              <div class="recent-sales box">
-                <div class="title">Available Rides Bookings</div>
-                <div class="sales-details">
-                  <ul class="details">
-                    <li class="topic">Date</li>
-                    <li><a href="#">02 Jan 2021</a></li>
-                    <li><a href="#">02 Jan 2021</a></li>
-                    <li><a href="#">02 Jan 2021</a></li>
-                    <li><a href="#">02 Jan 2021</a></li>
-                    <li><a href="#">02 Jan 2021</a></li>
-                    <li><a href="#">02 Jan 2021</a></li>
-                    <li><a href="#">02 Jan 2021</a></li>
-
-                  </ul>
-                  <ul class="details">
-                    <li class="topic">Customer</li>
-                    <li><a href="#">Alex Doe</a></li>
-                    <li><a href="#">David Mart</a></li>
-                    <li><a href="#">Roe Parter</a></li>
-                    <li><a href="#">Diana Penty</a></li>
-                    <li><a href="#">Martin Paw</a></li>
-                    <li><a href="#">Doe Alex</a></li>
-                    <li><a href="#">Aiana Lexa</a></li>
-
-                  </ul>
-                  <ul class="details">
-                    <li class="topic">Area</li>
-                    <li><a href="#">Delivered</a></li>
-                    <li><a href="#">Pending</a></li>
-                    <li><a href="#">Returned</a></li>
-                    <li><a href="#">Delivered</a></li>
-                    <li><a href="#">Pending</a></li>
-                    <li><a href="#">Returned</a></li>
-                    <li><a href="#">Delivered</a></li>
-
-                  </ul>
-                  <ul class="details">
-                    <li class="topic">Total Fare</li>
-                    <li><a href="#">$204.98</a></li>
-                    <li><a href="#">$24.55</a></li>
-                    <li><a href="#">$25.88</a></li>
-                    <li><a href="#">$170.66</a></li>
-                    <li><a href="#">$56.56</a></li>
-                    <li><a href="#">$44.95</a></li>
-                    <li><a href="#">$67.33</a></li>
-
-                  </ul>
-                </div>
-              </div>
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="dashboard">Dashboard</span>
             </div>
-          </div>
 
+        </nav>
+
+        <div class="home-content">
+            <div class="overview-boxes">
+                <div class="box">
+                    <div class="right-side">
+                        <pan type="button" onclick="document.getElementById('id01').style.display='block'">Start Journey
+                        </pan>
+
+
+                    </div>
+                    <!-- i class='bx bx-cart-alt cart'></i-->
+                </div>
+
+                <div class="box">
+                    <div class="right-side">
+                        <pan type="button" onclick="document.getElementById('id03').style.display='block'">Available
+                            Rides</pan>
+
+                    </div>
+                    <!-- i class='bx bxs-cart-add cart two' ></i-->
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <pan type="button" onclick="document.getElementById('id04').style.display='block'">Pooling
+                            Status</pan>
+
+                    </div>
+                    <!-- i class='bx bx-cart cart three' ></i-->
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <pan type="button" onclick="document.getElementById('id02').style.display='block'">FeedBack
+                        </pan>
+
+                    </div>
+                    <!-- i class='bx bxs-cart-download cart four' ></i-->
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <h2>
+                Ride Details
+            </h2>
         </div>
 
 
-  </section>
+        <div class="my-home-content">
+
+            <div id="id01" class="w3-panel w3-green w3-display" style="display:none">
+                <pan onclick="this.parentElement.style.display='none'" class="w3-button w3-red w3-display-topright">x
+                </pan>
+
+                <div class="sales-boxes">
+                    <div class="recent-sales box">
+
+                        <h2>Start Journey</h2>
+                        <form class="form-inline" action="/action_page.php">
+
+                            <div class="form-group">
+
+                                <label for="currentlocation">Current Location:</label>
+                                <input type="CurrentLocation" class="form-control" id="currentlocation"
+                                    placeholder="Enter CurrentLocation" name="plateNo" align="center">
+                                <button class='bx bx-been-here'></button>
+                            </div><br>
+                            <div class="form-group">
+                                <label for="destinationlocation">Destination Location:</label>
+                                <input type="Destinationlocation" class="form-control" id="destinationlocation"
+                                    placeholder="Enter Destination Location" name="destination location" align="left">
+                                <button class='bx bx-been-here'></button>
+                            </div><br>
+                            <div class="form-group">
+                                <label for="ownerid">Owner ID:</label>
+                                <input type="Owner ID" class="form-control" id="ownerid"
+                                    placeholder="Enter the owner id" name="ownerid" align="right">
+                            </div><br>
+                            <div class="form-group">
+                                <label for="vehicletype">vehicle Type:</label>
+                                <input type="Vehicle Type" class="form-control" id="vehicletype"
+                                    placeholder="Enter vehicle type" name="vehicletype">
+                            </div><br>
+
+                            <button type="submit" class="btn btn-default">Submit</button>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
 
 
-  <script>
-    let sidebar = document.querySelector(".sidebar");
-    let sidebarBtn = document.querySelector(".sidebarBtn");
-    sidebarBtn.onclick = function () {
-      sidebar.classList.toggle("active");
-      if (sidebar.classList.contains("active")) {
-        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
-      } else
-        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-    }
-  </script>
+            <div id="id02" class="w3-panel w3-green w3-display" style="display:none">
+                <pan onclick="this.parentElement.style.display='none'" class="w3-button w3-red w3-display-topright">x
+                </pan>
+
+                <div class="sales-boxes">
+                    <div class="recent-sales box">
+                        <h2>FeedBack</h2>
+                        <form class="form-inline" action="/action_page.php">
+                            <div class="form-group">
+                                <label for="commutatorid">Commutator ID:</label>
+                                <input type="CommutatorID" class="form-control" id="CommutatorID"
+                                    placeholder="Enter Commutator ID" name="commutatorid">
+                            </div><br>
+                            <div class="form-group">
+                                <label for="ownerid">Owner ID:</label>
+                                <input type="Owner ID" class="form-control" id="ownerid"
+                                    placeholder="Enter the owner ID" name="mode">
+                            </div><br>
+                            <div class="form-group">
+                                <label for="ratings">Ratings:</label>
+                                <input type="Ratings" class="form-control" id="ratings"
+                                    placeholder="Enter the rating out of 10 " name="ratings">
+                            </div><br>
+                            <div class="form-group">
+                                <label for="comment">Comment:</label>
+                                <input type="Comment" class="form-control" id="comment"
+                                    placeholder="Enter your valuable comments" name="comments">
+                            </div><br>
+
+                            <button type="submit" class="btn btn-default">Submit</button>
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="id04" class="w3-panel w3-green w3-display" style="display:none">
+                <pan onclick="this.parentElement.style.display='none'" class="w3-button w3-red w3-display-topright">x
+                </pan>
+
+                <div class="sales-boxes">
+                    <div class="recent-sales box">
+                        <h2>Pooling</h2>
+                        <form class="form-inline" action="/action_page.php">
+                            <div class="form-group">
+                                <label for="ownerid">Owner ID:</label>
+                                <input type="OwnerID" class="form-control" id="OwnerID" placeholder="Transaction Number"
+                                    name="ownerid">
+                            </div><br>
+                            <div class="form-group">
+                                <label for="vehciletype">Vehcile Type:</label>
+                                <input type="Vehcile Type" class="form-control" id="vehcile"
+                                    placeholder="Enter the vehicle type" name="vehcile">
+                            </div><br>
+                            <div class="form-group">
+                                <label for="commutatorcontact">Commutator Contact:</label>
+                                <input type="Commutator Contact" class="form-control" id="commuataorcontact"
+                                    placeholder="Enter the Commutator ID " name="commutatorid">
+                            </div><br>
+                            <div class="form-group">
+                                <label for="pickuppoint">PickUp Point:</label>
+                                <input type="PickUpPoint" class="form-control" id="pickuppoint"
+                                    placeholder="Enter the pick up point" name="pickuppoint">
+                                <button class='bx bx-been-here'></button>
+                            </div><br>
+                            <div class="form-group">
+                                <label for="destinationpoint">Destination Point:</label>
+                                <input type="DestinationPoint" class="form-control" id="destinationpoint"
+                                    placeholder="Enter the Destination Point" name="destinationpoint">
+                                <button class='bx bx-been-here'></button>
+                            </div><br>
+
+
+                            <button type="submit" class="btn btn-default">Submit</button>
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="id05" class="w3-panel w3-green w3-display" style="display:none">
+                <pan onclick="this.parentElement.style.display='none'" class="w3-button w3-red w3-display-topright">x
+                </pan>
+
+                <div class="sales-boxes">
+                    <div class="recent-sales box">
+                        <h2>Booking</h2>
+                        <form class="form-inline" action="/action_page.php">
+                            <div class="form-group">
+                                <label for="bookingid">Booking ID:</label>
+                                <input type="BookingID" class="form-control" id="BookingID"
+                                    placeholder="Enter the Booking ID" name="bookingid">
+                            </div><br>
+                            <div class="form-group">
+                                <label for="pickuptime">PickUp Time:</label>
+                                <input type="PickUp Time" class="form-control" id="PickUp Time"
+                                    placeholder="Enter the pick up time" name="pickuptime">
+                            </div><br>
+                            <div class="form-group">
+                                <label for="returntime">Return Time:</label>
+                                <input type="Return Time" class="form-control" id="returntime"
+                                    placeholder="Enter the Return Time " name="returntime">
+                            </div><br>
+                            <div class="form-group">
+                                <label for="vehicletype">vehicle Type:</label>
+                                <input type="Vehicle Type" class="form-control" id="vehicletype"
+                                    placeholder="Enter the vehicle type" name="vehcile">
+                            </div><br>
+                            <div class="form-group">
+                                <label for="cost">Cost:</label>
+                                <input type="Cost" class="form-control" id="cost" placeholder="Enter the fair"
+                                    name="cost">
+                            </div><br>
+                            <div class="form-group">
+                                <label for="currentlocation">Current Location:</label>
+                                <input type="Current Location" class="form-control" id="currentlocation"
+                                    placeholder="Enter the current location" name="currentlocation">
+                                <button class='bx bx-been-here'></button>
+                            </div><br>
+                            <div class="form-group">
+                                <label for="address">Destination:</label>
+                                <input type="Address" class="form-control" id="Address"
+                                    placeholder="Enter the destination Address" name="address">
+                                <button class='bx bx-been-here'></button>
+                            </div><br>
+                            <div class="form-group">
+                                <label for="status">Status:</label>
+                                <input type="Status" class="form-control" id="Status"
+                                    placeholder="Enter the Status of Ride" name="status">
+                            </div><br>
+
+                            <button type="submit" class="btn btn-default">Submit</button>
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div id="id03" class="w3-panel w3-green w3-display" style="display:none">
+                <pan onclick="this.parentElement.style.display='none'" class="w3-button w3-red w3-display-topright">x
+                </pan>
+
+                <div class="sales-boxes">
+                    <div class="recent-sales box">
+                        <div class="sales-boxes">
+                            <div class="recent-sales box">
+                                <div class="title">Available Rides Bookings</div>
+                                <div class="sales-details">
+                                    <ul class="details">
+                                        <li class="topic">Date</li>
+                                        <li><a href="#">02 Jan 2021</a></li>
+                                        <li><a href="#">02 Jan 2021</a></li>
+                                        <li><a href="#">02 Jan 2021</a></li>
+                                        <li><a href="#">02 Jan 2021</a></li>
+                                        <li><a href="#">02 Jan 2021</a></li>
+                                        <li><a href="#">02 Jan 2021</a></li>
+                                        <li><a href="#">02 Jan 2021</a></li>
+
+                                    </ul>
+                                    <ul class="details">
+                                        <li class="topic">Customer</li>
+                                        <li><a href="#">Alex Doe</a></li>
+                                        <li><a href="#">David Mart</a></li>
+                                        <li><a href="#">Roe Parter</a></li>
+                                        <li><a href="#">Diana Penty</a></li>
+                                        <li><a href="#">Martin Paw</a></li>
+                                        <li><a href="#">Doe Alex</a></li>
+                                        <li><a href="#">Aiana Lexa</a></li>
+
+                                    </ul>
+                                    <ul class="details">
+                                        <li class="topic">Area</li>
+                                        <li><a href="#">Delivered</a></li>
+                                        <li><a href="#">Pending</a></li>
+                                        <li><a href="#">Returned</a></li>
+                                        <li><a href="#">Delivered</a></li>
+                                        <li><a href="#">Pending</a></li>
+                                        <li><a href="#">Returned</a></li>
+                                        <li><a href="#">Delivered</a></li>
+
+                                    </ul>
+                                    <ul class="details">
+                                        <li class="topic">Total Fare</li>
+                                        <li><a href="#">$204.98</a></li>
+                                        <li><a href="#">$24.55</a></li>
+                                        <li><a href="#">$25.88</a></li>
+                                        <li><a href="#">$170.66</a></li>
+                                        <li><a href="#">$56.56</a></li>
+                                        <li><a href="#">$44.95</a></li>
+                                        <li><a href="#">$67.33</a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+    </section>
+
+
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+        sidebarBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            } else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+    </script>
 
 </body>
 

@@ -34,4 +34,10 @@ router.get("/nearby-vehicles", async (req, res) => {
   res.send(result);
 });
 
+router.post("/confirm-booking", async (req, res) => {});
+
+router.get("/reject-booking", async (req, res) => {});
+
+router.get("/confirm-payment", async (req, res) => {});
+
 module.exports = router;

@@ -22,13 +22,16 @@ const renderCommuterInfo = (data) => {
     </div>`;
 
   const content = document.querySelector(".my-home-content");
+
   content.insertAdjacentHTML("afterend", html);
-  document.querySelector(".book-now").addEventListener("click", function () {
-    console.log("Hello");
-    // socket.emit("message", {
-    //   message: "Book Now",
-    //   vehicle_id: "1",
-    // });
+  const acceptButton = document.querySelector(".accept-request");
+  const rejectButton = document.querySelector(".reject-request");
+
+  acceptButton.addEventListener("click", () => {
+    console.log("accepted");
+  });
+  rejectButton.addEventListener("click", () => {
+    console.log("rejected");
   });
 };
 
