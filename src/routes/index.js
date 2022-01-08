@@ -29,7 +29,6 @@ router.get("/commuter/search-rides", (req, res) => {
 router.get("/maps", (req, res) => {
   res.render("google-maps");
 });
-<<<<<<< HEAD
 router.get("/mybooking", (req, res) => {
   const data = {
     srclat: "12.95337133011648",
@@ -48,7 +47,5 @@ router.get("/mybooking", (req, res) => {
     data,
   });
 });
-=======
 
->>>>>>> 0d4de7216c1cdce927b498efe3f2bbe1e7da6f8b
 module.exports = router;
