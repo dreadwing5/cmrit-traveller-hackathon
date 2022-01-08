@@ -52,10 +52,43 @@ router.get("/nearby-vehicles", async (req, res) => {
   res.send(result);
 });
 
-router.post("/confirm-booking", async (req, res) => {});
+router.post("/confirm-booking", async (req, res) => {
 
-router.get("/reject-booking", async (req, res) => {});
+//create rider details
+try{
+const{commuterid, ownerid, vehicleid, status, feedback, startDest, endDest, paymentID } = req.body;
+const data1 = {
+  commuterid, 
+  ownerid, 
+  vehicleid, 
+  status, 
+  feedback, 
+  startDest, 
+  endDest, 
+  paymentID,
+};
 
-router.get("/confirm-payment", async (req, res) => {});
+const sql = `INSERT INTO ride_detail SET ? `;
+const response = await execQuery(sql, data1);
+res.status(200).send("New Rider Created");
+} catch (e) {console.log(e);}
+});
+
+router.get("/reject-booking", async (req, res) => {
+const sql = `DELETE FROM ride_detail WHERE data =?`
+// delete rider details
+const result = await execQuery(sql);
+console.log(result);
+  res.send(result);
+});
+
+router.get("/confirm-payment", async (req, res) => {
+  // update rider details confirm payment
+const sql = `SELECT * FROM rider_detail`;
+const result = await execQuery(sql);
+console.log(result);
+res.send(result);
+
+});
 
 module.exports = router;
