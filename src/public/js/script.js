@@ -194,7 +194,7 @@ class App {
     document.querySelector(".book-now").addEventListener("click", function () {
       socket.emit("message", {
         message: "Book Now",
-        vehicle_id: data.plateNumber,
+        vehicle_id: "H1-26-54-32",
       });
     });
   }
