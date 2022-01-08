@@ -78,16 +78,38 @@ class App {
     setTimeout(() => (form.style.display = "grid"), 1000);
   }
 
-  _fetchNearestVehicle(e) {
+  async _fetchNearestVehicle(e) {
     e.preventDefault();
     const source = inputSource.value;
     const destination = inputDestination.value;
     const date = inputDate.value;
     const time = inputTime.value;
 
+    const results = await axios.get(
+      "https://maps.googleapis.com/maps/api/geocode/json",
+      {
+        params: {
+          address: source,
+          key: "AIzaSyAe93wOhrsEIVyL1IWC3LNoS0tgRVeJ2GQ",
+        },
+      }
+    );
+    const sourceCoords = results.data.results[0].geometry.location;
+
+    const result2 = await axios.get(
+      "https://maps.googleapis.com/maps/api/geocode/json",
+      {
+        params: {
+          address: destination,
+          key: "AIzaSyAe93wOhrsEIVyL1IWC3LNoS0tgRVeJ2GQ",
+        },
+      }
+    );
+    const destinationCoords = result2.data.results[0].geometry.location;
+
     const data = {
-      source,
-      destination,
+      source: sourceCoords,
+      destination: destinationCoords,
       date,
       time,
     };
@@ -100,9 +122,15 @@ class App {
     });
 
     // const fakeLocation = [
-    const coords = [12.95337133011648, 77.68157958984376];
 
-    this._renderWorkoutMarker(coords);
+    const coord = [12.95337133011648, 77.68157958984376];
+    const coord1 = [12.9715987, 77.5945627];
+    const coord2 = [12.97727, 77.5945627];
+
+    this._renderWorkoutMarker(coord);
+    // this._renderWorkoutMarker(coord1);
+    // this._renderWorkoutMarker(coord2);
+
     //
     // console.log(result);
   }
@@ -134,22 +162,29 @@ class App {
       // )
       .openPopup();
     const popup = document.querySelector(".popup");
-    popup.addEventListener("click", (e) => {
-      this._renderWorkout();
-    });
+
+    popup.addEventListener("click", (e) => this._renderWorkout());
+
+    // popup.forEach((pop) => {
+    //   pop.addEventListener("click", (e) => this._renderWorkout());
+    // });
   }
 
   _renderWorkout() {
     let html = `<div class="card">
     <img src="https://images.unsplash.com/photo-1566008885218-90abf9200ddb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80" class="card-img-top" alt="...">
     <div class="card-body">
-      <h2 class="card-title">Sedan</h2>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <h2 class="card-title">Honda<h2>
+      <p class="card-text">Test data </p>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">Price : </li>
-      <li class="list-group-item">Capacity : </li>
-      <li class="list-group-item">Owner Name : </li>
+      <li class="list-group-item">PlateNumber : H1-26-54-32</li>
+      <li class="list-group-item">Type : Car</li>
+      <li class="list-group-item">Capacity :4</li>
+      <li class="list-group-item">Owner Email : 123@test1.com </li>
+      <li class="list-group-item">Cost : Rs. 10000 / KM</li>
+
+
     </ul>
     <div class="card-body">
       <button class="book-now btn btn-primary">Book</button>
@@ -159,7 +194,7 @@ class App {
     document.querySelector(".book-now").addEventListener("click", function () {
       socket.emit("message", {
         message: "Book Now",
-        vehicle_id: "1",
+        vehicle_id: data.plateNumber,
       });
     });
   }
