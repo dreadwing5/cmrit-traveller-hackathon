@@ -70,5 +70,8 @@ router.get("/commuter/mybooking", (req, res) => {
 router.get("/payment", (req, res) => {
   res.render("payment");
 });
+router.get("/paymenthistory", (req, res) => {
+  res.render("paymenthistory");
+});
 
 module.exports = router;
