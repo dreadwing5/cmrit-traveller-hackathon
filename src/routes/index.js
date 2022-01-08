@@ -55,12 +55,14 @@ router.get("/commuter/mybooking", (req, res) => {
     destlat: "12.9715987",
     destlng: "77.5945627",
     ownerid: "123@test1.com",
-    commuterid: "123@cmrit.ac.in",
+    commuterid: "sack19is@cmrit.ac.in",
     vehicleid: "1",
     paymentStatus: "Not confirmed",
     feedback: "NULL",
     date: "NULL",
     paymentID: "NULL",
+    source: "CMRIT UNIVERSITY",
+    destination: "KIIT UNIVERSITY",
   };
   res.render("commuter-booking", {
     data,
