@@ -6,13 +6,16 @@ const renderCommuterInfo = (data) => {
   <div class="card" style="width: 18rem;">
       <img src="https://images.unsplash.com/photo-1566008885218-90abf9200ddb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80" class="card-img-top" alt="...">
       <div class="card-body">
-        <h2 class="card-title">Sedan</h2>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <h2 class="card-title">Honda</h2>
+        <p class="card-text">The car is in good condition, the milage is really good.</p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Price : </li>
-        <li class="list-group-item">Capacity : </li>
-        <li class="list-group-item">Owner Name : </li>
+        <li class="list-group-item">Price :1350</li>
+        <li class="list-group-item">Capacity :4 </li>
+        <li class="list-group-item">Commuter Name : Pratik</li>
+        <li class="list-group-item">Commuter Email :123@cmrit.ac.in</li>
+        <li class="list-group-item">Source: CMRIT COLLEGE</li>
+        <li class="list-group-item">Destination: KIIT UNIVERSITY</li>
       </ul>
       <div class="card-body">
         <button class="accept-request btn btn-primary">Accept</button>
@@ -28,10 +31,10 @@ const renderCommuterInfo = (data) => {
   const rejectButton = document.querySelector(".reject-request");
 
   acceptButton.addEventListener("click", () => {
-    console.log("accepted");
+    alert("Request Accepted");
   });
   rejectButton.addEventListener("click", () => {
-    console.log("rejected");
+    alert("Request Rejected");
   });
 };
 

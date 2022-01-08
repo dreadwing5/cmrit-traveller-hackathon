@@ -5,8 +5,8 @@ const CONNECTION_CONFIG = {
   host: "localhost",
   user: "root",
   // have to remove this password
- password: "pratik79",
-  // password: "",
+  //  password: "pratik79",
+  password: "",
 };
 
 const CREATE_DATABASE = `Create Database tyl_hackathon`;

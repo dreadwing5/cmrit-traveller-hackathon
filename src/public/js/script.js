@@ -182,7 +182,7 @@ class App {
       <li class="list-group-item">Type : Car</li>
       <li class="list-group-item">Capacity :4</li>
       <li class="list-group-item">Owner Email : 123@test1.com </li>
-      <li class="list-group-item">Cost : Rs. 10000 / KM</li>
+      <li class="list-group-item">Cost : Rs. 1350 / KM</li>
 
 
     </ul>

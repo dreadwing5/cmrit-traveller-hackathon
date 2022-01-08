@@ -51,16 +51,18 @@ router.post("/vehicle", async (req, res) => {
 // Route for getting  vehicle data
 
 router.get("/vehicle", async (req, res) => {
-  try{
-  const sql = `SELECT * from vehicle`;
-  const result = await execQuery(sql); //TODO  --Display frontend
-  console.log(result);
-  currentime = Date.getTime;
-  dbtime = result[0].time;
-  console.log(dbtime);
-  console.log(currentime);
-  }catch (e) {console.log(e);}
-  
+  try {
+    const sql = `SELECT * from vehicle`;
+    const result = await execQuery(sql); //TODO  --Display frontend
+    console.log(result);
+    const currentDate = new Date();
+    const timestamp = currentDate.getTime();
+    dbtime = result[0].time;
+    console.log(dbtime, timestamp);
+  } catch (e) {
+    console.log(e);
+  }
+
   const sql = `SELECT from vehicle where vehicle_id=${req.session.user}`;
 
   const data = Date.now();
