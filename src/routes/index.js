@@ -22,4 +22,7 @@ router.get("/commuter", (req, res) => {
   res.render("commuter-dashboard");
 });
 
+router.get("/map", (req, res) => {
+  res.render("map");
+});
 module.exports = router;

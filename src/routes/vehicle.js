@@ -26,4 +26,12 @@ router.get("/vehicle", async (req, res) => {
   console.log(data);
 });
 
+router.get("/nearby-vehicles", async (req, res) => {
+  const sql = `SELECT * FROM vehicle`;
+  const result = await execQuery(sql);
+
+  console.log(result);
+  res.send(result);
+});
+
 module.exports = router;
