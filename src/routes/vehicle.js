@@ -11,12 +11,30 @@ if (!connection) {
 const execQuery = util.promisify(connection.query.bind(connection));
 
 router.post("/vehicle", async (req, res) => {
-  console.log(req.body);
+  try{
+  const{ plateNumber, mailid, images, capacity, cost, time, vechicleType, brand, name, location } = req.body;
+  // currentDate = new Date(); const timestamp = currentDate. getTime(); 
+  const data = { 
+    plateNumber, 
+    mailid, 
+    images, 
+    capacity, 
+    cost,   
+    time,  
+    vechicleType, 
+    brand, 
+    name, 
+    location,
+  };
 
-  const sql = `SELECT * FROM vehicle_owners`;
-  const data = await execQuery(sql);
-  console.log(data); //TODO Pratik -- Add vehicle details to the database
+  const sql = `INSERT INTO  vehicle SET ? `;
+  const response = await execQuery(sql, data);
+  res.status(200).send("Successfully registered");
+
+  console.log(data);
+} catch (e) {console.log(e);}//TODO Pratik -- Add vehicle details to the database
 });
+
 
 // Route for getting  vehicle data
 
