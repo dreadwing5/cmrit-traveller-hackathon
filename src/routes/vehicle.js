@@ -75,7 +75,7 @@ res.status(200).send("New Rider Created");
 });
 
 router.get("/reject-booking", async (req, res) => {
-const sql = `DELETE FROM ride_detail WHERE data =?`
+const sql = `DELETE FROM ride_detail WHERE data =?`;
 // delete rider details
 const result = await execQuery(sql);
 console.log(result);
